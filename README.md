@@ -24,14 +24,6 @@ To stop the vault, press `Ctrl+C` in the terminal.
 - When you find a flag, paste it into the mission and press **Submit flag**.
 - Stuck? Every mission has one hint.
 
-## Your first flag
-
-To get familiar with the platform, here is your first flag. It's scrambled:
-
-```
-bnFvcntjdTBnMGZ1MGNfY2UwfQ==
-```
-
 ## Useful commands
 
 | Command | What it does |
