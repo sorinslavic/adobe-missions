@@ -15,7 +15,7 @@ export const MISSIONS = [
     topic: "Terminal",
     tags: ["Terminal"],
     difficulty: 1,
-    brief: "Every mission hides a flag. Find it, paste it below, and the mission is yours. Start easy: the vault talks the most when it wakes up.",
+    brief: "The vault talks the most when it wakes up.",
     hints: ["Where did you wake it up?"],
     tools: [],
     colors: { background: "#dff3e4", ink: "#123524", accent: "#1aa365" },
