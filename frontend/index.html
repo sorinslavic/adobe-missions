@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pixel Vault</title>
+  <!-- Reminder for launch day: delete the staging password adbe{1nd3s1gn} before going live. -->
+  <link rel="icon" href="img/adobe-logo.svg">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/brand.css">
+</head>
+<body>
+  <div class="app-layout">
+    <nav class="side-rail" aria-label="Main">
+      <img class="side-rail-logo" src="img/adobe-logo.svg" alt="Adobe">
+      <a class="side-rail-link is-active" href="#">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+        Home
+      </a>
+    </nav>
+
+    <div class="main-area">
+      <header class="top-bar">
+        <span class="product-name">Pixel Vault</span>
+        <span class="top-bar-spacer"></span>
+        <div class="progress-pill">
+          <span><b id="solved-count">0</b> of 8 flags</span>
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="intern-avatar" title="Intern">IN</div>
+      </header>
+
+      <!-- The hub: every mission as a tile. -->
+      <section id="hub-view" class="hub">
+        <h1 class="hub-title">Welcome, intern. Pick a mission.</h1>
+        <p class="hub-intro">
+          A rogue intern locked Adobe's brand kit in this vault. Every mission hides a flag that looks like
+          <code>adbe{password}</code>. Do them in any order.
+        </p>
+        <div class="filter-buttons" id="filter-buttons">
+          <button class="filter-button is-active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="open">Open</button>
+          <button class="filter-button" data-filter="solved">Solved</button>
+        </div>
+        <div class="mission-tiles" id="mission-tiles"></div>
+      </section>
+
+      <!-- One mission at a time: details on the left, its tools on the right. -->
+      <section id="mission-view" class="mission-view" hidden>
+        <aside class="mission-panel" id="mission-panel"></aside>
+        <div class="mission-canvas" id="mission-canvas"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Tools used by some missions. They are moved into the mission canvas when a mission needs them. -->
+  <div id="tool-shelf" hidden>
+
+    <div id="asset-request-tool" class="tool-card">
+      <h3 class="tool-title">Brand asset request</h3>
+      <p class="tool-subtitle">Need a logo pack or font license? Ask the vault.</p>
+      <form id="asset-request-form" class="asset-request-form">
+        <label class="form-field">
+          Full name
+          <input class="text-input" name="name" value="Alex Rivera">
+        </label>
+        <label class="form-field">
+          Email
+          <input class="text-input" name="email" type="email" value="alex@school.edu">
+        </label>
+        <label class="form-field full-width">
+          Asset type
+          <select class="text-input" name="asset_type">
+            <option>Logo pack</option>
+            <option>Font license</option>
+            <option>Brand colors</option>
+            <option>Stock images</option>
+          </select>
+        </label>
+        <label class="form-field full-width">
+          Reason
+          <textarea class="text-input" name="reason">School poster for the robotics club.</textarea>
+        </label>
+        <div class="form-actions full-width">
+          <button id="send-request" class="send-request-button" type="submit" style="background-color: #8e8e8e;">Send request</button>
+          <span id="asset-request-status" class="form-status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+
+    <div id="brand-check-tool" class="live-check">
+      <h4 class="live-check-title">Live check</h4>
+      <div class="color-swatches">
+        <div class="color-swatch" id="current-color-swatch">
+          <b>Now</b>
+          <code id="current-color-value">checking...</code>
+        </div>
+        <div class="color-swatch required-color">
+          <b>Required</b>
+          <code>rgb(235, 16, 0)</code>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li class="check-item" id="brand-color-check">Send request button is Adobe Red</li>
+      </ul>
+      <div class="revealed-flag" id="brand-check-flag" hidden></div>
+    </div>
+
+    <div id="department-check-tool" class="live-check">
+      <h4 class="live-check-title">Live check</h4>
+      <ul class="check-list">
+        <li class="check-item" id="department-field-check">Form has a <code>department</code> field</li>
+        <li class="check-item" id="department-stored-check">Vault stores <code>department</code></li>
+        <li class="check-item" id="department-test-check">A test for <code>department</code> passes</li>
+      </ul>
+      <div class="revealed-flag" id="department-check-flag" hidden></div>
+    </div>
+
+    <div id="shop-tool" class="tool-card">
+      <div class="shop-header">
+        <div>
+          <h3 class="tool-title">Adobe Stock</h3>
+          <p class="tool-subtitle">Spend your intern credits.</p>
+        </div>
+        <div class="credits"><b id="credits">0</b> credits</div>
+      </div>
+      <div class="shop-items" id="shop-items"></div>
+      <p class="shop-message" id="shop-message" aria-live="polite"></p>
+    </div>
+
+  </div>
+
+  <script src="js/brand-guard.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

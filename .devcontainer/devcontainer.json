@@ -1,0 +1,10 @@
+{
+  "name": "Pixel Vault",
+  "image": "mcr.microsoft.com/devcontainers/cpp:1-debian-12",
+  "portsAttributes": {
+    "8080": {
+      "label": "Pixel Vault",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
