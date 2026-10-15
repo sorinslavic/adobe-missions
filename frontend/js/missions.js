@@ -37,7 +37,7 @@ export const MISSIONS = [
     topic: "Git history",
     tags: ["Git"],
     difficulty: 1,
-    brief: "This project didn't build itself. Whoever was there first holds the password.",
+    brief: "This project didn't build itself. The name of whoever was there first is the password.",
     hints: ["Git never forgets who did what, or when."],
     tools: [],
     colors: { background: "#e3e1ff", ink: "#211c55", accent: "#5b5bd6" },
@@ -81,7 +81,7 @@ export const MISSIONS = [
     topic: "Forms · C++ · Tests",
     tags: ["HTML", "C++", "Tests"],
     difficulty: 3,
-    brief: "The request form needs a <b>Department</b> field (Creative Cloud, Document Cloud, Experience Cloud). Add it, and get the vault to approve it.",
+    brief: "The request form needs a <b>Department</b> field (Creative Cloud, Document Cloud, Experience Cloud). Add it, and prove it works with a new test.",
     hints: [
       "Every field starts its life in the page itself.",
       "The vault is picky about what it accepts.",
