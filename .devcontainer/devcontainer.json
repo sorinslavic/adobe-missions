@@ -6,5 +6,10 @@
       "label": "Pixel Vault",
       "onAutoForward": "openBrowser"
     }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["-github.copilot-chat"]
+    }
   }
 }
