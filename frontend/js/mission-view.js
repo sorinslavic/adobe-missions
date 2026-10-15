@@ -17,13 +17,15 @@ const FLAG_FORMAT = /^adbe\{.+\}$/;
 function missionPanel(mission, isSolved) {
   const tags = mission.tags.map((tag) => `<span class="mission-tag">${tag}</span>`).join("");
 
-  const hintAndFlagBox = isSolved
+  const hint = `
+    <details class="hint">
+      <summary>Show hint</summary>
+      <p>${mission.hint}</p>
+    </details>`;
+
+  const flagBox = isSolved
     ? `<div class="solved-banner">✓ Solved. Nice work, intern.</div>`
     : `
-      <details class="hint">
-        <summary>Show hint</summary>
-        <p>${mission.hint}</p>
-      </details>
       <form class="flag-form" id="flag-form">
         <label for="flag-input" hidden>Flag</label>
         <input class="flag-input" id="flag-input" placeholder="adbe{...}" autocomplete="off" spellcheck="false">
@@ -37,7 +39,8 @@ function missionPanel(mission, isSolved) {
     <h2 class="mission-title">${mission.title}</h2>
     <div class="mission-tags">${tags}</div>
     <p class="mission-brief">${mission.brief}</p>
-    ${hintAndFlagBox}`;
+    ${hint}
+    ${flagBox}`;
 }
 
 function returnToolsToShelf() {
