@@ -1,4 +1,4 @@
-// Every mission shown in the vault: what it's called, what to do, and hints.
+// Every mission shown in the vault: what it's called, what to do and hints.
 //
 // hints: shown one at a time, in order
 //
@@ -38,7 +38,7 @@ export const MISSIONS = [
     tags: ["Git"],
     difficulty: 1,
     brief: "This project didn't build itself. The name of whoever was there first is the password.",
-    hints: ["Git never forgets who did what, or when."],
+    hints: ["Git never forgets who did what or when."],
     tools: [],
     colors: { background: "#e3e1ff", ink: "#211c55", accent: "#5b5bd6" },
   },
@@ -81,7 +81,7 @@ export const MISSIONS = [
     topic: "Forms · C++ · Tests",
     tags: ["HTML", "C++", "Tests"],
     difficulty: 3,
-    brief: "The request form needs a <b>Department</b> field (Creative Cloud, Document Cloud, Experience Cloud). Add it, and prove it works with a new test.",
+    brief: "The request form needs a <b>Department</b> field (Creative Cloud, Document Cloud, Experience Cloud). Add it and prove it works with a new test.",
     hints: [
       "Every field starts its life in the page itself.",
       "The vault is picky about what it accepts.",

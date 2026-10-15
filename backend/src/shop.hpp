@@ -1,4 +1,4 @@
-// The Adobe Stock shop: what can be bought, and what it costs.
+// The Adobe Stock shop: what can be bought and what it costs.
 #pragma once
 
 #include <string>

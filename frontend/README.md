@@ -1,13 +1,13 @@
 # Frontend
 
 The website of the vault. Plain HTML, CSS and JavaScript — no build step.
-Change a file, refresh the browser, and you'll see the change.
+Change a file, refresh the browser and you'll see the change.
 
 ## Files
 
 | File | What it does |
 | --- | --- |
-| `index.html` | The page: the hub, the mission view, and the tools (request form, live checks, shop) |
+| `index.html` | The page: the hub, the mission view and the tools (request form, live checks, shop) |
 | `css/app.css` | How everything looks |
 | `css/brand.css` | Brand rules, loaded after `app.css` |
 | `js/app.js` | Starts the website and decides what to show (`#m3` in the address bar opens mission 3) |

@@ -1,4 +1,4 @@
-// Secrets that the vault hands out, and a way to check flags.
+// Secrets that the vault hands out and a way to check flags.
 #pragma once
 
 #include <string>

@@ -1,7 +1,7 @@
 // Tests for brand asset requests.
 //
 // Want to add your own test? Copy one of these, give it a new name that describes
-// what it checks, and run `make test`.
+// what it checks and run `make test`.
 
 #include "asset_request_fields.hpp"
 #include "asset_requests.hpp"
