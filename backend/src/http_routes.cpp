@@ -96,12 +96,12 @@ void checkBrandColor(const httplib::Request& request, httplib::Response& respons
 }
 
 // GET /api/department-check
-void checkDepartmentReadiness(VaultDatabase& database, httplib::Response& response) {
-    bool departmentStored = requestHasDepartment(database.latestAssetRequest());
+void checkDepartmentReadiness(httplib::Response& response) {
+    bool departmentAccepted = vaultAcceptsDepartment();
     bool departmentTestPassed = testReportHasPassingDepartmentTest(TEST_REPORT_PATH);
 
-    json result = {{"departmentStored", departmentStored}, {"departmentTestPassed", departmentTestPassed}};
-    if (departmentStored && departmentTestPassed) {
+    json result = {{"departmentAccepted", departmentAccepted}, {"departmentTestPassed", departmentTestPassed}};
+    if (departmentAccepted && departmentTestPassed) {
         result["flag"] = departmentApprovalToken();
     }
     sendJson(response, 200, result);
@@ -181,8 +181,7 @@ void addApiRoutes(httplib::Server& server, VaultDatabase& database, RequestRateL
     });
 
     server.Get("/api/department-check", [&](const httplib::Request&, httplib::Response& response) {
-        std::lock_guard<std::mutex> lock(oneRequestAtATime);
-        checkDepartmentReadiness(database, response);
+        checkDepartmentReadiness(response);
     });
 
     server.Get("/api/shop", [&](const httplib::Request&, httplib::Response& response) {

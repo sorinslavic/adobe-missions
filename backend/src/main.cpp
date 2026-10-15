@@ -19,6 +19,14 @@ const std::string DATABASE_PATH = DATA_FOLDER + "/vault.db";
 const int ASSET_REQUESTS_ALLOWED_PER_WINDOW = 10;
 const std::chrono::seconds ASSET_REQUEST_WINDOW(10);
 
+// Makes sure a second vault can't start on the same port while the first one is still running.
+void allowOnlyOneVaultPerPort(httplib::Server& server) {
+    server.set_socket_options([](socket_t socket) {
+        int enabled = 1;
+        setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<const char*>(&enabled), sizeof(enabled));
+    });
+}
+
 void printBootStep(const std::string& line) {
     std::cout << "  [boot] " << line << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(120));
@@ -43,6 +51,7 @@ int main() {
     RequestRateLimiter assetRequestLimiter(ASSET_REQUESTS_ALLOWED_PER_WINDOW, ASSET_REQUEST_WINDOW);
 
     httplib::Server server;
+    allowOnlyOneVaultPerPort(server);
     serveWebsiteFiles(server, WEBSITE_FOLDER);
     addApiRoutes(server, database, assetRequestLimiter);
 

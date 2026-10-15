@@ -423,18 +423,37 @@ code {
   color: var(--color-text-soft);
 }
 
-.hint summary {
+.hints {
+  display: grid;
+  gap: 8px;
+}
+
+.hint-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hint-list li {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-primary-soft);
+  color: var(--color-text-soft);
+}
+
+.hint-button {
+  all: unset;
+  justify-self: start;
   font-weight: 800;
   color: var(--color-primary);
   cursor: pointer;
 }
 
-.hint p {
-  margin: 8px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: var(--color-primary-soft);
-  color: var(--color-text-soft);
+.hint-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .flag-form {
@@ -677,6 +696,12 @@ textarea.text-input {
 .check-item.is-passing::before {
   content: "\2713";
   background: var(--color-success);
+}
+
+.check-waiting {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--color-text-faint);
 }
 
 .revealed-flag {

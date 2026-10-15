@@ -17,12 +17,3 @@ TEST(solved_missions_are_remembered_once) {
     EXPECT_EQUAL(database.solvedMissions().size(), 1);
     EXPECT_EQUAL(database.solvedMissions()[0], 3);
 }
-
-TEST(latest_asset_request_is_the_most_recent_one) {
-    VaultDatabase database(":memory:", 100);
-
-    database.saveAssetRequest("{\"name\":\"first\"}");
-    database.saveAssetRequest("{\"name\":\"second\"}");
-
-    EXPECT_EQUAL(database.latestAssetRequest(), "{\"name\":\"second\"}");
-}

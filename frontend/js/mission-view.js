@@ -14,14 +14,39 @@ const TOOL_ELEMENT_IDS = {
 
 const FLAG_FORMAT = /^adbe\{.+\}$/;
 
+function hintButtonLabel(mission, hintsShown) {
+  if (mission.hints.length === 1) {
+    return "Show hint";
+  }
+  const nextHint = hintsShown + 1;
+  return hintsShown === 0
+    ? `Show hint (1 of ${mission.hints.length})`
+    : `Show next hint (${nextHint} of ${mission.hints.length})`;
+}
+
+// Reveals the hints one at a time, in order.
+function setupHints(mission) {
+  let hintsShown = 0;
+  const list = document.getElementById("hint-list");
+  const button = document.getElementById("hint-button");
+
+  button.addEventListener("click", () => {
+    const hint = document.createElement("li");
+    hint.innerHTML = mission.hints[hintsShown];
+    list.appendChild(hint);
+    hintsShown++;
+
+    if (hintsShown === mission.hints.length) {
+      button.hidden = true;
+    } else {
+      button.textContent = hintButtonLabel(mission, hintsShown);
+    }
+  });
+}
+
 function missionPanel(mission, isSolved) {
   const tags = mission.tags.map((tag) => `<span class="mission-tag">${tag}</span>`).join("");
 
-  const hint = `
-    <details class="hint">
-      <summary>Show hint</summary>
-      <p>${mission.hint}</p>
-    </details>`;
 
   const flagBox = isSolved
     ? `<div class="solved-banner">✓ Solved. Nice work, intern.</div>`
@@ -39,7 +64,10 @@ function missionPanel(mission, isSolved) {
     <h2 class="mission-title">${mission.title}</h2>
     <div class="mission-tags">${tags}</div>
     <p class="mission-brief">${mission.brief}</p>
-    ${hint}
+    <div class="hints">
+      <ol class="hint-list" id="hint-list"></ol>
+      <button class="hint-button" id="hint-button" type="button">${hintButtonLabel(mission, 0)}</button>
+    </div>
     ${flagBox}`;
 }
 
@@ -96,6 +124,7 @@ export function showMission(mission, isSolved, onMissionSolved) {
   document.getElementById("back-button").addEventListener("click", () => {
     location.hash = "";
   });
+  setupHints(mission);
   setupFlagForm(mission, onMissionSolved);
   placeToolsOnCanvas(mission);
 

@@ -84,8 +84,8 @@ function priceTagArt({ background, ink, accent }) {
 }
 
 const ARTWORK_BY_MISSION = [
-  scrambledLettersArt,
   terminalArt,
+  scrambledLettersArt,
   gitHistoryArt,
   htmlCommentArt,
   tooManyRequestsArt,

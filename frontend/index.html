@@ -109,10 +109,11 @@
     <div id="department-check-tool" class="live-check">
       <h4 class="live-check-title">Live check</h4>
       <ul class="check-list">
-        <li class="check-item" id="department-field-check">Form has a <code>department</code> field</li>
-        <li class="check-item" id="department-stored-check">Vault stores <code>department</code></li>
-        <li class="check-item" id="department-test-check">A test for <code>department</code> passes</li>
+        <li class="check-item is-passing" id="department-field-check" hidden>Form has a <code>department</code> field</li>
+        <li class="check-item is-passing" id="department-accepted-check" hidden>Vault accepts <code>department</code></li>
+        <li class="check-item is-passing" id="department-test-check" hidden>A test for <code>department</code> passes</li>
       </ul>
+      <p class="check-waiting" id="department-check-waiting">Not approved yet.</p>
       <div class="revealed-flag" id="department-check-flag" hidden></div>
     </div>
 

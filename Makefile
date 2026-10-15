@@ -2,7 +2,7 @@
 #
 #   make start   build the vault, run the tests, then open the vault
 #   make test    build and run the tests only
-#   make reset   forget all progress (solved missions, credits, requests)
+#   make reset   undo all code changes and forget all progress
 #   make clean   delete everything that was compiled
 
 CXXFLAGS := -std=c++17 -O1 -Wall -Wextra -Wno-sign-compare -Ibackend/src -isystem backend/vendor -MMD -MP
@@ -32,8 +32,12 @@ test: $(TEST_PROGRAM)
 	@./$(TEST_PROGRAM)
 
 reset:
+	@printf "This undoes ALL your code changes and forgets your progress. Type yes to continue: "
+	@read answer && [ "$$answer" = "yes" ] || (echo "Nothing was reset."; exit 1)
+	@git checkout -- .
+	@git clean -fdq
 	@rm -rf data
-	@echo "Progress, credits and requests were reset."
+	@echo "Everything is back to how it was at the start."
 
 clean:
 	@rm -rf $(BUILD_FOLDER)

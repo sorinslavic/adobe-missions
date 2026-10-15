@@ -28,10 +28,6 @@ public:
     void run() { sqlite3_step(statement); }
 
     long long numberColumn(int column) { return sqlite3_column_int64(statement, column); }
-    std::string textColumn(int column) {
-        const unsigned char* text = sqlite3_column_text(statement, column);
-        return text ? reinterpret_cast<const char*>(text) : "";
-    }
 
 private:
     sqlite3_stmt* statement = nullptr;
@@ -93,14 +89,6 @@ void VaultDatabase::saveAssetRequest(const std::string& fieldsAsJson) {
     Statement insert(connection, "INSERT INTO asset_requests (fields_json) VALUES (?)");
     insert.bindText(1, fieldsAsJson);
     insert.run();
-}
-
-std::string VaultDatabase::latestAssetRequest() {
-    Statement query(connection, "SELECT fields_json FROM asset_requests ORDER BY id DESC LIMIT 1");
-    if (query.nextRow()) {
-        return query.textColumn(0);
-    }
-    return "";
 }
 
 long long VaultDatabase::credits() {

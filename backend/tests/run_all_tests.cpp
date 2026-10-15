@@ -75,6 +75,7 @@ int main() {
     for (const std::string& name : failedTestNames) {
         std::cout << "    - " << name << std::endl;
     }
-    std::cout << std::endl << "  The vault will not start until every test passes." << std::endl << std::endl;
+    std::cout << std::endl << "  The vault will not start until every test passes." << std::endl;
+    std::cout << "  Tests are promises. Did a promise change?" << std::endl << std::endl;
     return 1;
 }

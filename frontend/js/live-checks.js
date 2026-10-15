@@ -10,6 +10,11 @@ function markCheck(elementId, isPassing) {
   document.getElementById(elementId).classList.toggle("is-passing", isPassing);
 }
 
+// Only lists a requirement once it is met, so the list never gives away what comes next.
+function showWhenMet(elementId, isMet) {
+  document.getElementById(elementId).hidden = !isMet;
+}
+
 function revealFlag(elementId, flag) {
   const box = document.getElementById(elementId);
   if (!flag) {
@@ -37,10 +42,15 @@ async function runDepartmentCheck() {
   const formHasDepartment = document.querySelector('#asset-request-form [name="department"]') !== null;
   const result = await checkDepartmentReadiness();
 
-  markCheck("department-field-check", formHasDepartment);
-  markCheck("department-stored-check", result.data.departmentStored === true);
-  markCheck("department-test-check", result.data.departmentTestPassed === true);
-  revealFlag("department-check-flag", formHasDepartment ? result.data.flag : null);
+  const departmentAccepted = result.data.departmentAccepted === true;
+  const departmentTestPassed = result.data.departmentTestPassed === true;
+  const everythingMet = formHasDepartment && departmentAccepted && departmentTestPassed;
+
+  showWhenMet("department-field-check", formHasDepartment);
+  showWhenMet("department-accepted-check", departmentAccepted);
+  showWhenMet("department-test-check", departmentTestPassed);
+  document.getElementById("department-check-waiting").hidden = everythingMet;
+  revealFlag("department-check-flag", everythingMet ? result.data.flag : null);
 }
 
 export function startLiveChecks(toolNames) {

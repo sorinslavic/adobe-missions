@@ -30,7 +30,7 @@ To stop the vault, press `Ctrl+C` in the terminal.
 | --- | --- |
 | `make start` | Builds the vault, runs the tests, and opens the vault |
 | `make test` | Runs the tests only |
-| `make reset` | Forgets all progress and starts over |
+| `make reset` | Undoes all your code changes and forgets all progress |
 
 ## What's inside
 

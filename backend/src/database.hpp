@@ -16,8 +16,6 @@ public:
     std::vector<int> solvedMissions();
 
     void saveAssetRequest(const std::string& fieldsAsJson);
-    // The most recent asset request as JSON text, or "" if there is none yet.
-    std::string latestAssetRequest();
 
     long long credits();
     void setCredits(long long newCredits);

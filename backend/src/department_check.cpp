@@ -4,17 +4,20 @@
 
 #include <fstream>
 
+#include "asset_requests.hpp"
 #include "json.hpp"
 
 using nlohmann::json;
 
-bool requestHasDepartment(const std::string& assetRequestAsJson) {
-    json request = json::parse(assetRequestAsJson, nullptr, false);
-    if (!request.is_object() || !request.contains("department")) {
-        return false;
-    }
-    const json& department = request["department"];
-    return department.is_string() && !department.get<std::string>().empty();
+bool vaultAcceptsDepartment() {
+    json sampleRequest = {
+        {"name", "Sample Intern"},
+        {"email", "intern@example.com"},
+        {"asset_type", "Logo pack"},
+        {"reason", "Readiness check"},
+        {"department", "Creative Cloud"},
+    };
+    return validateAssetRequest(sampleRequest).isValid;
 }
 
 bool testReportHasPassingDepartmentTest(const std::string& testReportPath) {

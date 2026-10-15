@@ -26,8 +26,8 @@ std::string fingerprintOf(const std::string& text) {
 
 // One fingerprint per mission, in mission order (0 to 7).
 const std::vector<std::string> FLAG_FINGERPRINTS = {
-    "5c74f547a086b6d421f6027f183147b3db16947271dcf9f8cb3f413d8a302a7f",
     "b77433eb7c1a953d09bb4d630bea43657a7753efb72f372d1d9ed9cc3f7edbe7",
+    "5c74f547a086b6d421f6027f183147b3db16947271dcf9f8cb3f413d8a302a7f",
     "b55e46e89b152bb637510b3b963eed6104c3cc737e13951d1df1913eed17f61d",
     "4f701e2b8bfcf75f9d09ec0660a3306e6ed73b53d8d05e11774dfed57625f34f",
     "00f925ee9226e367295017d2750ac5d881dbe67e1db2682168fb7de4b0fdbef5",
